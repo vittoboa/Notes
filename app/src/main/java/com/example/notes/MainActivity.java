@@ -9,9 +9,10 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListNotesAdapter.OnNoteListener {
 
     private ArrayList<Note> mNotes = new ArrayList<>();
+    public static final String NOTE_ID = "com.example.notes";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createNewNote(View view) {
-        Intent intent = new Intent(this, CreateNoteActivity.class);
+        Intent intent = new Intent(this, EditNoteActivity.class);
         startActivity(intent);
     }
 
@@ -35,8 +36,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void initListNotes() {
         RecyclerView listNotes = findViewById(R.id.listNotes);
-        ListNotesAdapter adapter = new ListNotesAdapter(this, mNotes);
+        ListNotesAdapter adapter = new ListNotesAdapter(this, mNotes, this);
         listNotes.setAdapter(adapter);
         listNotes.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        Intent intent = new Intent(this, EditNoteActivity.class);
+        intent.putExtra(NOTE_ID, mNotes.get(position).getId());
+        startActivity(intent);
     }
 }

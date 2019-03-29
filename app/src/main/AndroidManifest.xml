@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".CreateNoteActivity"
+        <activity android:name=".EditNoteActivity"
             android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".MainActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->

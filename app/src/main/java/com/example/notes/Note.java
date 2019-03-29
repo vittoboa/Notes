@@ -42,4 +42,8 @@ public class Note {
     public String getText() {
         return text;
     }
+
+    public boolean isEmpty() {
+        return this.getTitle().isEmpty() && this.getText().isEmpty();
+    }
 }

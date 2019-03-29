@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fadingEdge="vertical"
-    tools:context=".CreateNoteActivity">
+    tools:context=".EditNoteActivity">
 
     <EditText
         android:id="@+id/noteTitleWrite"

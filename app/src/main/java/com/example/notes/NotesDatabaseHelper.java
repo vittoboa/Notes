@@ -52,6 +52,21 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Note getNote(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NOTES, new String[]{KEY_ID,
+                        KEY_NOTE_TITLE, KEY_NOTE_TEXT}, KEY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Note note = new Note(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), cursor.getString(2));
+
+        return note;
+    }
+
     public ArrayList<Note> getAllNotes() {
         ArrayList<Note> noteList = new ArrayList<Note>();
 
@@ -72,7 +87,24 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        // return contact list
         return noteList;
+    }
+
+    public void updateNote(Note note) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NOTE_TITLE, note.getTitle());
+        values.put(KEY_NOTE_TEXT, note.getText());
+
+        db.update(TABLE_NOTES, values, KEY_ID + " = ?",
+                new String[]{String.valueOf(note.getId())});
+    }
+
+    public void deleteNote(Note note) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NOTES, KEY_ID + " = ?",
+                new String[] { String.valueOf(note.getId()) });
+        db.close();
     }
 }
