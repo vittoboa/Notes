@@ -46,7 +46,7 @@ public class ListNotesAdapter extends RecyclerView.Adapter<ListNotesAdapter.View
         return mNotes.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         TextView title;
         TextView text;
@@ -61,16 +61,24 @@ public class ListNotesAdapter extends RecyclerView.Adapter<ListNotesAdapter.View
             this.onNoteListener = onNoteListener;
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             onNoteListener.onNoteClick(getAdapterPosition());
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            onNoteListener.onNoteLongClick(getAdapterPosition());
+            return true;
+        }
     }
 
     public interface OnNoteListener {
         void onNoteClick(int position);
+        void onNoteLongClick(int position);
     }
 
     private void viewGoneIfStringEmpty(String string, View view) {

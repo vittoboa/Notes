@@ -18,7 +18,7 @@ public class EditNoteActivity extends AppCompatActivity {
         noteId = intent.getIntExtra(MainActivity.NOTE_ID, -1);
 
         if(!isNoteNew(noteId)) {
-            getNote(noteId);
+            applyNote(noteId);
         }
     }
 
@@ -26,7 +26,7 @@ public class EditNoteActivity extends AppCompatActivity {
         return noteId == -1;
     }
 
-    private void getNote(int noteId) {
+    private void applyNote(int noteId) {
         NotesDatabaseHelper db = new NotesDatabaseHelper(this);
         Note note = db.getNote(noteId);
 

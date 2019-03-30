@@ -9,7 +9,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ListNotesAdapter.OnNoteListener {
+public class MainActivity extends AppCompatActivity implements ListNotesAdapter.OnNoteListener, DialogDeleteNote.DialogDeleteNoteListener {
 
     private ArrayList<Note> mNotes = new ArrayList<>();
     public static final String NOTE_ID = "com.example.notes";
@@ -46,5 +46,32 @@ public class MainActivity extends AppCompatActivity implements ListNotesAdapter.
         Intent intent = new Intent(this, EditNoteActivity.class);
         intent.putExtra(NOTE_ID, mNotes.get(position).getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onNoteLongClick(int position) {
+        dialogDeleteNote(position);
+    }
+
+    public void dialogDeleteNote(int position) {
+        DialogDeleteNote dialogDeleteNote = new DialogDeleteNote();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", position);
+        dialogDeleteNote.setArguments(bundle);
+
+        dialogDeleteNote.show(getSupportFragmentManager(), "delete note dialog");
+    }
+
+    @Override
+    public void deleteNote(int position) {
+        NotesDatabaseHelper db = new NotesDatabaseHelper(this);
+        Note note = mNotes.get(position);
+        db.deleteNote(note);
+
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 }

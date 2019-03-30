@@ -2,4 +2,8 @@
     <string name="app_name">Notes</string>
     <string name="noteTitle">Title</string>
     <string name="noteText">Note</string>
+    <string name="deleteNoteAlert">Delete this note?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
 </resources>
