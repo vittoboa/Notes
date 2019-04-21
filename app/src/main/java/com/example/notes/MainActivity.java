@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements ListNotesAdapter.
 
     private void initListNotes() {
         RecyclerView listNotes = findViewById(R.id.listNotes);
-        adapter = new ListNotesAdapter(this, mNotes, this);
+        adapter = new ListNotesAdapter(mNotes, this);
         listNotes.setAdapter(adapter);
         listNotes.setLayoutManager(new LinearLayoutManager(this));
     }

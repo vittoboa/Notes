@@ -13,12 +13,10 @@ import java.util.ArrayList;
 
 public class ListNotesAdapter extends RecyclerView.Adapter<ListNotesAdapter.ViewHolder> {
     private ArrayList<Note> mNotes = new ArrayList<>();
-    private Context mContext;
     private OnNoteListener mOnNoteListener;
 
-    public ListNotesAdapter(Context mContext, ArrayList<Note> mNotes, OnNoteListener onNoteListener) {
+    public ListNotesAdapter(ArrayList<Note> mNotes, OnNoteListener onNoteListener) {
         this.mNotes = mNotes;
-        this.mContext = mContext;
         this.mOnNoteListener = onNoteListener;
     }
 
