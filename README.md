@@ -5,7 +5,7 @@
 * Create a note
 <img src="media/createNote.gif"/>
 * Edit a note
-<img src="media/editNote.gif"/>
+<img src="media/EditNote.gif"/>
 * Delete a note
 <img src="media/deleteNote.gif"/>
 * All notes are stored in a database and wont be deleted when closing the app
