@@ -11,7 +11,7 @@
 * Delete a note
 <img src="media/deleteNote.gif" width="200">
 
-* All notes are stored in a database and wont be deleted when closing the app
+* All notes are stored in a database and won't be deleted when closing the app
 <img src="media/allNotesAreSaved.gif" width="200">
 
 ## Motivation
